@@ -176,15 +176,6 @@ function intToBytes(value) {
   return new Uint8Array(tempArray.buffer);
 }
 
-function isWebBluetoothEnabled() {
-  if (!navigator.bluetooth) {
-    console.log('Web Bluetooth is NOT available!')
-    return false
-  }
-  console.log('Web Bluetooth is available!')
-  return true
-}
-
 function getDeviceInfo() {
   let options = {
     filters: [{ name: deviceName}],
@@ -292,7 +283,7 @@ function parseData(sensor, data) {
   // the sensor id and the data size
   var dataIndex = 0 + 2;
   scheme.forEach(element => {
-    console.log(element);
+    //console.log(element);
     var name = element['name'];
     var valueType = element['type'];
     var scale = element['scale-factor'];
@@ -318,7 +309,7 @@ function parseData(sensor, data) {
       console.log("Error: unknown type");
     }
     result = result + element.name + ": " + value + "   ";
-    console.log(dataIndex);
+    //console.log(dataIndex);
     dataIndex += size;
   });
   return [sensorName, result];
