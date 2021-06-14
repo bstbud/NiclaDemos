@@ -176,6 +176,15 @@ function intToBytes(value) {
   return new Uint8Array(tempArray.buffer);
 }
 
+function isWebBluetoothEnabled() {
+  if (!navigator.bluetooth) {
+    console.log('Web Bluetooth is NOT available!')
+    return false
+  }
+  console.log('Web Bluetooth is available!')
+  return true
+}
+
 function getDeviceInfo() {
   let options = {
     filters: [{ name: deviceName}],
@@ -242,7 +251,7 @@ function receiveSensorData(event) {
   // Get sensor data
   var sensor = value.getUint8(0);
   var size = value.getUint8(1);
-  console.log(value)
+  console.log(value);
   var parsedData = parseData(sensor, value);
   parsedName = parsedData[0]
   parsedValue = parsedData[1]

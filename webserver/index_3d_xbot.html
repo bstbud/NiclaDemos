@@ -466,7 +466,12 @@
                 var sensor = value.getUint8(0);
                 var size = value.getUint8(1);
                 if (sensor == targetSensorId) {
-                    var euler = parseDataEuler(sensor, value);
+                    var evt = parseData(sensor, value);
+                    var euler = [];
+                    euler[0] = evt["heading"];
+                    euler[1] = evt["pitch"];
+                    euler[2] = evt["roll"];
+                    
 
                     var eulerCurr = document.getElementById("eulerCurr");
                     eulerCurr.innerHTML = euler;

@@ -43,11 +43,11 @@
       "type": "quaternion",
       "parse-scheme": 
       [
-        {"name": "x", "type": "int16", "scale-factor": 1},
-        {"name": "y", "type": "int16", "scale-factor": 1},
-        {"name": "z", "type": "int16", "scale-factor": 1},
-        {"name": "w", "type": "int16", "scale-factor": 1},
-        {"name": "accuracy", "type": "uint16", "scale-factor": 1}
+        {"name": "x", "type": "int16", "scale-factor": 0.000061035},
+        {"name": "y", "type": "int16", "scale-factor": 0.000061035},
+        {"name": "z", "type": "int16", "scale-factor": 0.000061035},
+        {"name": "w", "type": "int16", "scale-factor": 0.000061035},
+        {"name": "accuracy", "type": "uint16", "scale-factor": 0.000061035}
       ]
     },
 
@@ -58,7 +58,8 @@
       [
         {"name": "x", "type": "int16", "scale-factor": 1},
         {"name": "y", "type": "int16", "scale-factor": 1},
-        {"name": "z", "type": "int16", "scale-factor": 1}
+        {"name": "z", "type": "int16", "scale-factor": 1},
+        {"name": "accuracy", "type": "uint8", "scale-factor":1}
       ]
     },
 
@@ -69,7 +70,8 @@
       [
         {"name": "heading", "type": "int16", "scale-factor": 0.01098},
         {"name": "pitch", "type": "int16", "scale-factor": 0.01098},
-        {"name": "roll", "type": "int16", "scale-factor": 0.01098}
+        {"name": "roll", "type": "int16", "scale-factor": 0.01098},
+        {"name": "accuracy", "type": "uint8", "scale-factor":1}
       ]
     },
 
@@ -89,7 +91,23 @@
       [
         {"name": "val", "type": "uint32", "scale-factor": 1}
       ]
+    },
+
+    {
+        "id": 9,
+        "type": "pdr",
+        "parse-scheme":
+        [
+            {"name": "pos_x", "type": "int24", "scale-factor": 0.1},
+            {"name": "pos_y", "type": "int24", "scale-factor": 0.1},
+            {"name": "hor_acc", "type": "int16", "scale-factor": 0.1},
+            {"name": "heading", "type": "uint16", "scale-factor": 0.1},
+            {"name": "heading_acc", "type": "uint16", "scale-factor": 0.1},
+            {"name": "step count", "type": "uint16"},
+            {"name": "status", "type": "uint8"}
+       ]
     }
+
 
   ]
 }

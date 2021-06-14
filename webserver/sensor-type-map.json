@@ -76,12 +76,25 @@
     "type": 5,
     "type-name": "xyz"
   },
+  
+  "37": {
+    "name": "Game Rotation Vector",
+    "type": 4,
+    "type-name": "Quaternion"
+  },
 
   "43": {
     "name": "ORI",
     "type": 6,
     "type-name": "orientation"
   },
+
+  "113": {
+    "name": "PDR",
+    "type": 9,
+    "type-name": "PDR"
+  },
+
 
   "128": {
     "name": "TEMPERATURE",
