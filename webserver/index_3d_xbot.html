@@ -27,6 +27,7 @@
                 <h8> <i>Current status: </i></h8><span id="connectionStatus" class="badge rounded-pill bg-danger">Disconnected</span>
             </div>
             <div class="row">
+                <h8> <i>Euler Value: </i></h8><span id="eulerCurr" style="color:blue">0,0,0</span>
             </div>
 
             <div class="col-md-3 input-group">
@@ -52,7 +53,7 @@
             let currentBaseAction = 'idle';
 
             var quatLatest;
-            export var eulerLatest;
+            var eulerLatest;
 
             const allActions = [];
             const baseActions = {
@@ -71,7 +72,8 @@
             init();
 
             function init() {
-                quatLatest = new THREE.Quaternion(0, 0, 0, 1)
+                eulerLatest = new THREE.Euler(0, 0, 0);
+                quatLatest = new THREE.Quaternion(0, 0, 0, 1);
 
                 const container = document.getElementById( 'container' );
                 clock = new THREE.Clock();
@@ -432,9 +434,20 @@
                 //const quaternion = new THREE.Quaternion();
                 //quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
 
-                //scene.applyQuaternion(quatLatest);
-                //eulerLatest.set(data[0], data[1], data[2]);
-                //quatLatest.setFromEuler(eulerLatest)
+                var eulerCurr = document.getElementById("eulerCurr");
+                var euler = eulerCurr.innerHTML;
+
+                euler = euler.trim();
+                if (euler != "0,0,0") {
+                    //console.log(euler);
+                    var data = euler.split(' ').map(parseFloat)
+
+                    eulerLatest.set(data[0], data[1], data[2]);
+                    quatLatest.setFromEuler(eulerLatest);
+                    scene.applyQuaternion(quatLatest);
+                    } else {
+                    console.log("not ready yet");
+                }
 
 				renderer.render( scene, camera );
 
@@ -452,11 +465,12 @@
                 // Get sensor data
                 var sensor = value.getUint8(0);
                 var size = value.getUint8(1);
-                var euler = parseDataEuler(sensor, value);
                 if (sensor == targetSensorId) {
-                    //console.log(parsedName + parsedValue);
-                    //eulerLatest.set(data[0], data[1], data[2]);
-                    //quatLatest.setFromEuler(eulerLatest)
+                    var euler = parseDataEuler(sensor, value);
+
+                    var eulerCurr = document.getElementById("eulerCurr");
+                    eulerCurr.innerHTML = euler;
+                    //eulerCurr.innerHTML = euler[0] + " " + euler[1] + " " + euler[2];
                 } else {
                     //console.log("ignored event from sensor:" + sensor);
                 }

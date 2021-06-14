@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <canvas id='can' width="800" heigh="800" style="border:1px solid #000000;"></canvas>
+        <br></br>
+        <button id="clearBtn">Clear</button>
+        <script type="text/javascript">
+            var can = getById('can');
+            boxes = 32;
+            size = 20;
+            ctx = can.getContext('2d');
+            grid_unit = 5;
+
+            var newSize = '10px';
+            var fontArgs = ctx.font.split(' ');
+            ctx.font = newSize + ' ' + fontArgs[fontArgs.length - 1]; /// using the last part
+            let font_size = parseInt(newSize);
+            console.log("font_size: " +  font_size + "," + fontArgs[1]);
+            margin = font_size * 2;
+
+            clearBtn = getById('clearBtn');
+
+            drawGrid();
+
+            function drawGrid() {
+                len = boxes * size; 
+                can.height = can.width = len + (margin * 2);
+                var center = (len + (margin * 2)) / 2;
+
+
+                ctx.beginPath();
+                ctx.beginPath();
+                ctx.arc(center, center, 6, 0, Math.PI*2, true);
+                ctx.closePath();
+                ctx.fillStyle = "blue"
+                ctx.fill();
+                ctx.fillStyle = "black";
+
+
+                //ctx.strokeStyle = "black";
+                let boxes_half = boxes / 2;
+                ctx.beginPath();
+                ctx.moveTo(center, margin);
+                ctx.lineTo(center, len + margin);
+                ctx.moveTo(margin, center);
+                ctx.lineTo(len + margin, center);
+                ctx.stroke();
+
+                for (var i = 0; i < (boxes / 2) + 1; i++) {
+                    sx = center + size * i;
+                    xTxtStart = sx - (font_size / 2);
+                    ctx.fillText((i*grid_unit).toString(), xTxtStart, margin);
+                    yTxtStart = sx + (font_size / 2);
+                    ctx.fillText((i!=0?'-':'')+(i*grid_unit).toString(), 0, yTxtStart);
+                    ctx.beginPath();
+                    ctx.moveTo(sx, margin);
+                    ctx.lineTo(sx, len + margin);
+                    sy = sx;
+                    ctx.moveTo(margin, sy);
+                    ctx.lineTo(len + margin, sy);
+                    ctx.stroke();
+                }
+
+                for (var i = 0; i < (boxes / 2) + 1; i++) {
+                    sx = center - size * i;
+                    xTxtStart =  sx - (font_size / 2);
+                    ctx.fillText((i!=0?'-':'')+(i*grid_unit).toString(), xTxtStart, margin);
+                    yTxtStart = sx + (font_size / 2);
+                    ctx.fillText((i!=0?' ':'')+(i*grid_unit).toString(), 0, yTxtStart);
+                    ctx.beginPath();
+                    ctx.moveTo(sx, margin);
+                    ctx.lineTo(sx, len + margin);
+                    sy = sx;
+                    ctx.moveTo(margin, sy);
+                    ctx.lineTo(len + margin, sy);
+                    ctx.stroke();
+                }
+
+            }
+
+
+            can.addEventListener('mousemove', function (evt) {
+                var mousePos = getMousePos(can, evt);
+                var sx = (Math.ceil(mousePos.x/size)-1)*size,
+                sy =  (Math.ceil(mousePos.y/size)-1)*size;
+                console.log(sx,sy,sx+size,sy+size);
+            }, false);
+
+            clearBtn.addEventListener('click', function (evt) {
+            ctx.clearRect(0,0,can.width,can.height);
+            drawGrid();
+            });
+
+
+            function getMousePos(canvas, evt) {
+            var rect = can.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+            }
+
+            function getById(x) {
+                return document.getElementById(x);
+            }
+            </script>
+    </body>
+</html>
