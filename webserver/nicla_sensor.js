@@ -81,7 +81,7 @@ function parseData(sensor, data) {
     }
 
     if (scale != undefined) {
-      value = (value * scale).toFixed(2);
+      value = (value * scale).toFixed(4);
     } else {
         //console.log(name + " has no scale");
     }
@@ -97,7 +97,7 @@ function parseData(sensor, data) {
     i++;
   }
 
-  console.log(result_str);
+  console.log(result);
   return result;
 }
 
