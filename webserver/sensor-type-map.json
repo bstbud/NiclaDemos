@@ -582,6 +582,13 @@
     "dashboard": 0
   },
 
+  "115": {
+    "name": "BSEC Output Version 2",
+    "scheme": "BSECOutputV2",
+    "value": 0,
+    "dashboard": 0
+  },
+
   "245": {
     "name": "TIMESTAMP_SMALL_WU",
     "scheme": "singleRead",
