@@ -22,17 +22,25 @@
             <div class="row">
             </div>
 
-            <div class="col">
-                <button id="connectButton" name="connectButton" class="btn btn-primary">Connect to Nicla Sense Board</button>
-                <h8> <i>Current status: </i></h8><span id="connectionStatus" class="badge rounded-pill bg-danger">Disconnected</span>
+            <div class="col-md-3">
+                <h8> <i>Board Connection: </i></h8>
+                <span id="connectionStatus" class="badge rounded-pill bg-danger">Disconnected</span>
+                <button id="connectButton" name="connectButton" class="btn btn-primary">Connect to Nicla Sense ME</button>
             </div>
 
 
-            <div class="col-md-3 input-group">
-                <button type="button" id="configureButton" name="configureButton" class="btn btn-primary">Configure rate</button> 
-                <span class="input-group-text" id="basic-addon1">Sample Rate </span>
-                <input id="rate" name="rate" type="text" class="form-control input-md">
+            <div class="col-md-3">
+                <span class="input-group-text" id="basic-addon1">Sample Rate:</span>
+                <input id="rate" name="rate" type="text" class="form-control input-md" placeholder="input 0 to diable the sensor">
+                <button type="button" id="configureButton" name="configureButton" class="btn btn-primary">Set Sensor Data Rate</button> 
             </div>
+
+            <div class="col-md-3">
+                <h8> <i>Enable Log of Quaternion Events</i></h8>
+                <input id="logSensorEvents" name="Log Sensor Events" type="checkbox" class="form-control input-md">
+                <h8> <i> </i></h8>
+            </div>
+
             <br><hr><br>
         </div>
         <div class="row">
@@ -51,6 +59,7 @@
     const quaternionScaleFactor = 1.0 / 16384
     const quaternionSensorRate = 50.0
 
+    var logSensorEvents = false;
 
     //var transformQuaternion = new THREE.Quaternion();
     //transformQuaternion.setFromAxisAngle( new THREE.Vector3( -1, 0, 0 ), Math.PI / 2 );
@@ -99,6 +108,11 @@
 	  }
 	});
 
+    document.querySelector('#logSensorEvents').addEventListener('change', function() {
+          logSensorEvents = document.getElementById('logSensorEvents').checked;
+      }
+    );
+
     document.querySelector('#configureButton').addEventListener('click', 
       _=> {
         var sensorId = quaternionSensorId;
@@ -120,6 +134,7 @@
 
       }
     );
+
 
 
 
@@ -296,13 +311,16 @@
 	  //console.log("sensor:", sensor)
 	  if (sensor == quaternionSensorId) {
         const arrXYZValues = parsedStringValue.split(" ");
+        //FIX
         var x = parseFloat(arrXYZValues[1]);
         var y = parseFloat(arrXYZValues[5]);
         var z = parseFloat(arrXYZValues[9]);
         var w = parseFloat(arrXYZValues[13]);
 
-        //console.log("rotVec: ", arrXYZValues);
-        console.log("rotVec: ", x, y, z, w);
+        if (logSensorEvents) {
+            console.log("rotVec: ", x, y, z, w);
+        }
+
         //var rotVec = [x * quaternionScaleFactor, y * quaternionScaleFactor, z * quaternionScaleFactor, w * quaternionScaleFactor];
         var rotVec = [x, y, z, w];
 
@@ -844,7 +862,6 @@
 			}
 
             function updateQuaternion(value) {
-                //console.log("rotVec:", value[0], value[1], value[2], value[3]);
                 quatEv = value;
             }
 
@@ -873,8 +890,9 @@
 				stats.update();
 
 
+                //var quatTrans = new THREE.Quaternion();
+                //quatTrans.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 2 );
                 quatLatest.set(quatEv[0], quatEv[2], -quatEv[1], quatEv[3]);
-                //console.log("quatLatest:" + quatLatest);
 
                 scene.setRotationFromQuaternion(quatLatest);
 
