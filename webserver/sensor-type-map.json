@@ -576,17 +576,17 @@
   },
 
   "171": {
-    "name": "BSEC Output",
+    "name": "BSEC Output (deprecated)",
     "scheme": "BSECOutput",
     "value": 0,
-    "dashboard": 0
+    "dashboard": 1
   },
 
   "115": {
-    "name": "BSEC Output Version 2",
+    "name": "BSEC Output",
     "scheme": "BSECOutputV2",
     "value": 0,
-    "dashboard": 0
+    "dashboard": 1
   },
 
   "245": {
