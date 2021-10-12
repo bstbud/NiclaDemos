@@ -1,6 +1,10 @@
 # LICENSES
+## The MIT License - 'LICENSE-AGPL-3.0'
+The sensor control and streaming part of the project is derived from the "nicla-sense-me-fw" project,
+which is under the AGPL-3.0 License.
+
 ## The MIT License - 'LICENSE-MIT'
-The majority of the project is under the MIT License;
+The 3d rendering part of the project is derived from the three.js project which is under the MIT license.
 
 ## The Apache License - 'LICENSE-Apache'
 The asset: webserver/assets/Astronaut.glb
