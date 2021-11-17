@@ -1,0 +1,23 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: NiclaDemos
+Upstream-Contact: Lucas Guo <lucas.guo.cn@gmail.com>
+Source: https://github.com/bstbud/NiclaDemos
+
+
+Files: index.html webserver/index.html webserver/sensor.html webserver/dfu.html webserver/index_vis.html webserver/nicla_ble.js webserver/nicla_sensor.js webserver/parse-scheme.json webserver/sensor-type-map.json
+Copyright: 2021, Arduino <info@arduino.cc>
+License: MPL-2.0
+
+Files: webserver/3d_xbot.html
+Copyright: 2021, Arduino <info@arduino.cc>
+           2010-2021, three.js authors
+License: MPL-2.0 and MIT
+
+Files: webserver/assets/Xbot.glb  webserver/assets/main.css
+Copyright: 2010-2021, three.js authors
+License: MIT
+
+Files: webserver/assets/Astronaut.glb
+License: Apache-2.0
+Copyright: model-viewer(https://github.com/google/model-viewer) contributors
+
