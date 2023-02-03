@@ -579,7 +579,7 @@
     "name": "BSEC Output (deprecated)",
     "scheme": "BSECOutput",
     "value": 0,
-    "dashboard": 1
+    "dashboard": 0
   },
 
   "115": {
