@@ -92,7 +92,19 @@
         {"name": "Compensated-Humidity(%)", "type": "uint16", "scale-factor": 0.002},
         {"name": "Compensated-Gas Resistance(Ohms)", "type": "uint16", "scale-factor": 1}
       ]
-    }
+    },
 
+    {
+      "id": 8,
+      "type": "BSEC2GasClassifierOutput",
+      "parse-scheme":
+      [
+        {"name": "Gas0(%)", "type": "uint8", "scale-factor": 1},
+        {"name": "Gas1(%)", "type": "uint8", "scale-factor": 1},
+        {"name": "Gas2(%)", "type": "uint8", "scale-factor": 1},
+        {"name": "Gas3(%)", "type": "uint8", "scale-factor": 1},
+        {"name": "Accuracy", "type": "uint8", "scale-factor": 1}
+      ]
+    }
   ]
 }

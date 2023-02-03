@@ -589,6 +589,13 @@
     "dashboard": 1
   },
 
+  "117": {
+      "name": "BSEC2 Gas Classifier Output",
+      "scheme": "BSEC2GasClassifierOutput",
+      "value": 0,
+      "dashboard": 1
+  },
+
   "245": {
     "name": "TIMESTAMP_SMALL_WU",
     "scheme": "singleRead",
