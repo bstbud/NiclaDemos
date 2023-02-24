@@ -562,8 +562,10 @@ function parseData(sensor, data) {
       } else {
          parse_scheme = parseScheme["types"][7]["parse-scheme"];
       }
-  } else if (scheme == "BSEC2GasClassifierOutput") {
+  } else if (scheme == "BSEC2DataCollectorOutput") {
     parse_scheme = parseScheme["types"][8]["parse-scheme"];
+  } else if (scheme == "BSEC2GasClassifierOutput") {
+    parse_scheme = parseScheme["types"][9]["parse-scheme"];
   }
 
   parse_scheme.forEach(element => {
@@ -594,6 +596,13 @@ function parseData(sensor, data) {
     } else if (valueType == "float") {
       value = data.getFloat32(dataIndex, true) * scale; 
       size = 4;
+    } else if (valueType == "uint64") {
+      valLow = data.getUint32(dataIndex, true)
+      valHigh = data.getUint32(dataIndex + 4, true)
+      value = (valLow + (valHigh * 2**32)) * scale
+      //value = (valLow) * scale
+      //console.log('value:' + value + 'scale:' + scale)
+      size = 8;
     } else if (valueType == "none") {
       value = eventcount + 1;
       sensorTypes[sensor].eventcount = value;
