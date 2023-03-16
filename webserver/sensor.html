@@ -589,9 +589,11 @@ function parseData(sensor, data) {
       size = 2;
     } else if (valueType == "uint24") {
       value = data.getUint16(dataIndex, true) + (data.getUint8(dataIndex+2, true) << 16);
+      value = value * scale;
       size = 3;
     } else if (valueType == "uint32") {
       value = data.getUint16(dataIndex, true) + (data.getUint16(dataIndex+2, true) << 16);
+      value = value * scale;
       size = 4;
     } else if (valueType == "float") {
       value = data.getFloat32(dataIndex, true) * scale; 
