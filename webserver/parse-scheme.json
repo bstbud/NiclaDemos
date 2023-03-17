@@ -90,7 +90,7 @@
         {"name": "Accuracy", "type": "uint8", "scale-factor": 1},
         {"name": "Compensated-Temperature(°C)", "type": "int16", "scale-factor": 0.003906},
         {"name": "Compensated-Humidity(%)", "type": "uint16", "scale-factor": 0.002},
-        {"name": "Compensated-Gas Resistance(Ohms)", "type": "uint16", "scale-factor": 1}
+        {"name": "Compensated-Gas Resistance(Ω)", "type": "uint32", "scale-factor": 1}
       ]
     },
 
